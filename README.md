@@ -10,7 +10,9 @@
 Due to limited time, some features were considered but not implemented. The following is a list of things to do and features not yet supported:
 
 ### Architecture / Code Quality
-* Removal of "any" types
+* Remove "any" types
+* Remove "@ts-ignore" directives
+* Fix build warnings / dependency issues
 * Use (or remove) Storybook
 * Unit/Automated tests
 * Decoupling from react-md UI library by creating wrapper components for everything used from that library
