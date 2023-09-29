@@ -1,4 +1,3 @@
-import './App.css';
 import { Configuration } from "@react-md/layout";
 //@ts-ignore
 import { useRoutes } from "hookrouter";
