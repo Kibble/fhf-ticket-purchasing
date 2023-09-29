@@ -1,6 +1,8 @@
+# Deployment
 
+The app is deployed and can be viewed at [https://65165b748469b4328aa25f9f--taupe-fenglisu-dde9f5.netlify.app/](https://65165b748469b4328aa25f9f--taupe-fenglisu-dde9f5.netlify.app/).
 
-# Running the App (yarn)
+# Running the App Locally (yarn)
 
 1. In the project directory, run `yarn` to install dependencies.
 2. Run `yarn start` to launch the app at [http://localhost:3000](http://localhost:3000).
