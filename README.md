@@ -42,6 +42,7 @@ Due to limited time, some features were considered but not implemented. The foll
 
 ### Other
 * WCAG compliance / accessibility
+* Fix favicon and browser page title
 * Different delivery options
 * Convenience fees
 * Event handling on "Place Order" click - Validations of form inputs

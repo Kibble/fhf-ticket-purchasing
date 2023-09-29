@@ -1,11 +1,10 @@
 import './App.css';
 import { Configuration } from "@react-md/layout";
 //@ts-ignore
-import { useRoutes, A } from "hookrouter";
+import { useRoutes } from "hookrouter";
 import { Provider } from 'react-redux';
 
 import store from './redux/store';
-
 import routes from './router';
 
 function App() {
