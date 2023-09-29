@@ -7,6 +7,7 @@ import { cardNumberFormatter } from '../utils/formatters';
 import VisaIcon from '../images/visa-icon.svg';
 
 const CardEntry = () => {
+    // TODO -- Move this data into redux store
     const [name, setName] = useState<string>('');
     const [cardNumber, setCardNumber] = useState<string>('');
     const [cvv, setCvv] = useState<string>('');

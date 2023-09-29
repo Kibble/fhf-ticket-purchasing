@@ -17,6 +17,10 @@ const Checkout = () => {
         price: 0,
     }
 
+    const handlePlaceOrderClick = () => {
+        // TODO -- perform validations on billing/address input
+    }
+
     return <Grid>
         <GridCell colSpan={12}>
             <Typography type="headline-3">Checkout</Typography>
@@ -26,7 +30,7 @@ const Checkout = () => {
             <Payment />
         </GridCell>
         <GridCell colSpan={4}>
-            <Total items={cartItems} delivery={delivery} />
+            <Total items={cartItems} delivery={delivery} onPlaceOrderClick={handlePlaceOrderClick} />
         </GridCell>
     </Grid>;
 }

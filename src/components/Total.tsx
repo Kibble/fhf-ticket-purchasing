@@ -5,8 +5,8 @@ import {
     CardContent,
     CardTitle,
     CardHeader,
-  } from "@react-md/card";
-import { Typography } from "@react-md/typography";
+} from '@react-md/card';
+import { Typography } from '@react-md/typography';
 
 import CartContents from '../components/CartContents';
 import { currencyFormatter } from '../utils/formatters';
@@ -14,17 +14,16 @@ import { currencyFormatter } from '../utils/formatters';
 import type { Delivery, Event } from './types';
 
 type Props = {
-    items: Array<{event: Event, quantity: number}>,
     delivery: Delivery,
+    items: Array<{event: Event, quantity: number}>,
+    onPlaceOrderClick: any,
 }
 
 const Total = (props: Props) => {
-    const {delivery, items} = props;
+    const {delivery, items, onPlaceOrderClick} = props;
 
     const total = useMemo(() => {
-        let sum = items.reduce((a, b) => {
-            return a + (b.event.price * b.quantity)
-        }, 0);
+        let sum = items.reduce((a, b) => a + (b.event.price * b.quantity), 0);
         return currencyFormatter(sum);
     }, [items]);
 
@@ -52,7 +51,7 @@ const Total = (props: Props) => {
                         <span>{delivery.price === 0 ? 'Free' : `$${delivery.price}`}</span>
                     </div>
                 </Typography>
-                <Button className="full-width" theme="primary" themeType="contained">Place Order</Button>
+                <Button className="full-width margin-top-2em" theme="primary" themeType="contained" onClick={onPlaceOrderClick}>Place Order</Button>
             </CardContent>
         </Card>
     </>

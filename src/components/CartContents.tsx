@@ -14,10 +14,15 @@ type Props = {
 
 const CartContents = ({items}: Props) => {
     return <>
-        {(items || []).map((item) => <div key={`cart-${item.event.title}`} className="flex-h-between">
-            <Typography>
-                {item.event.title}: {currencyFormatter(item.event.price)} x {item.quantity}
-            </Typography>
+        {(items || []).map((item) => <div key={`cart-${item.event.title}`} className="cart-item flex-h-between">
+            <div>
+                <Typography type="body-1">
+                    {item.event.title}{': '}
+                </Typography>
+                <Typography type="body-1">
+                    {currencyFormatter(item.event.price)} x {item.quantity}
+                </Typography>
+            </div>
             <Typography>
                 {currencyFormatter(item.event.price * item.quantity)}
             </Typography>

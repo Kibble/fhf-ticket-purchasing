@@ -6,6 +6,7 @@ import { Typography } from '@react-md/typography';
 import states from '../data/states';
 
 const AddressEntry = ({isBilling}: {isBilling?: boolean}) => {
+    // TODO -- Move this data into redux store
     const [firstName, setFirstName] = useState<string>('');
     const [lastName, setLastName] = useState<string>('');
     const [addr1, setAddr1] = useState<string>('');

@@ -15,11 +15,11 @@ Due to limited time, some features were considered but not implemented. The foll
 * Fix build warnings / dependency issues
 * Use (or remove) Storybook
 * Unit/Automated tests
-* Decoupling from react-md UI library by creating wrapper components for everything used from that library
-* Add a Redux "billingSlice" to use the Redux store for billing information (instead of component state)
+* Decouple from react-md UI library by creating wrapper components for everything used from that library
+* Use `billingSlice.ts` to maintain billing information in Redux store instead of component state
 
 ### Compatibility
-* Responsive/Mobile UI (looks okay on a 1032px width, better on 1440px)
+* Responsive/Mobile UI (looks okay on a 1025px width, better on 1160px)
 * Tested only on Chrome browser on a Windows machine
 
 ### Localization
@@ -44,7 +44,7 @@ Due to limited time, some features were considered but not implemented. The foll
 * WCAG compliance / accessibility
 * Different delivery options
 * Convenience fees
-* Event handling on "Place Order" click
+* Event handling on "Place Order" click - Validations of form inputs
 * Order cancelling
 * On-screen navigation back to the event listing page
 * Terms of Use
