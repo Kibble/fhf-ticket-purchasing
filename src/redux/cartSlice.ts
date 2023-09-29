@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import type { Delivery as DeliveryType, Event, Item } from '../components/types';
+import type { Event } from '../components/types';
 
 export type CartStore = {
     items: Array<{event: Event, quantity: number}>
