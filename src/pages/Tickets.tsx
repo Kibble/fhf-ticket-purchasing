@@ -19,7 +19,7 @@ import { events } from '../data/events';
 import CartContents from '../components/CartContents';
 import EventListing from '../components/EventListing';
 
-import type { Delivery as DeliveryType, Event } from '../components/types';
+import type { Event } from '../components/types';
 import type { CartStore } from '../redux/cartSlice';
 
 const Tickets = () => {

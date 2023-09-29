@@ -28,7 +28,7 @@ const Checkout = () => {
         <GridCell colSpan={4}>
             <Total items={cartItems} delivery={delivery} />
         </GridCell>
-    </Grid>
+    </Grid>;
 }
 
 export default Checkout;
