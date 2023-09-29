@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from "@react-md/button";
-import { TextField } from "@react-md/form";
+import { Grid, GridCell } from '@react-md/utils';
 import {
     Card,
     CardContent,
-    CardTitle,
-    CardSubtitle,
-    CardHeader,
 } from "@react-md/card";
 import { Typography } from "@react-md/typography";
 
@@ -16,30 +13,34 @@ type Props = {
     title: string,
     date: string,
     onAdd: any,
-    // description: string,
+    image: string,
     price: number,
 };
 
 const EventListing = (props: Props) => {
-    const {date, onAdd, price, title} = props;
+    const {date, image, onAdd, price, title} = props;
 
     return <Card fullWidth>
-        <CardHeader>
-            <CardTitle>
-                <div className="flex-h-between">
-                    <span>{title}</span>
-                    <span>{currencyFormatter(price)}</span>
-                </div>
-            </CardTitle>
-            <CardSubtitle>{date}</CardSubtitle>
-        </CardHeader>
         <CardContent>
-            <div className="flex-h-end">
-                {/* <TextField id={title + '-qty'} style={{marginRight: '1em', width: '3em'}} value="1"></TextField> */}
-                <Button theme="primary" themeType="outline" onClick={onAdd}>Add to Cart</Button>
-            </div>
+            <Grid>
+                <GridCell colSpan={4}>
+                    <img src={image} className="event-image" />
+                </GridCell>
+                <GridCell colSpan={8}>
+                    <div className="flex-h-between">
+                        <Typography type="headline-6">{title}</Typography>
+                        <Typography type="headline-6">{currencyFormatter(price)}</Typography>
+                    </div>
+                    <div>
+                        <Typography>{date}</Typography>
+                    </div>
+                    <div className="flex-h-end">
+                        <Button theme="primary" themeType="outline" onClick={onAdd}>Add to Cart</Button>
+                    </div>
+                </GridCell>
+            </Grid>
         </CardContent>
-    </Card>
+    </Card>;
 }
 
 export default EventListing;

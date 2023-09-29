@@ -1,9 +1,3 @@
-export type Item = {
-    name: string,
-    price: number,
-    quantity: number,
-};
-
 export type Delivery = {
     name: string,
     price: number,
@@ -12,5 +6,6 @@ export type Delivery = {
 export type Event = {
     title: string,
     date: string,
+    image: string,
     price: number,
 };

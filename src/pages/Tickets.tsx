@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from "@react-md/button";
 import { TextField } from "@react-md/form";
-import { Grid, GridCell } from "@react-md/utils";
+import { Grid, GridCell } from '@react-md/utils';
 import {
     Card,
     CardContent,
@@ -35,7 +35,7 @@ const Tickets = () => {
         </GridCell>
         <GridCell colSpan={8}>
             {
-                events.map((t) => <EventListing key={t.title} title={t.title} date={t.date} price={t.price} onAdd={handleAddClick(t)} />)
+                events.map((t) => <EventListing key={t.title} title={t.title} date={t.date} price={t.price} image={t.image} onAdd={handleAddClick(t)} />)
             }
         </GridCell>
         <GridCell colSpan={4}>
