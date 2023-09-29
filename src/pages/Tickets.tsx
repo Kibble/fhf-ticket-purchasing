@@ -12,35 +12,22 @@ import {
 import { Typography } from "@react-md/typography";
 // @ts-ignore
 import { navigate } from 'hookrouter';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart } from '../redux/cartSlice';
 
 import { events } from '../data/events';
+import CartContents from '../components/CartContents';
 import EventListing from '../components/EventListing';
-import { currencyFormatter } from '../utils/formatters';
 
-import type { Delivery as DeliveryType, Event, Item } from '../components/types';
+import type { Delivery as DeliveryType, Event } from '../components/types';
+import type { CartStore } from '../redux/cartSlice';
 
 const Tickets = () => {
-    // TODO -- Use Redux instead of component state
-    const [cartItems, setCartItems] = useState<Array<{event: Event, quantity: number}>>([]);
+    const dispatch = useDispatch();
+    const cartItems = useSelector((state: {cart: CartStore}) => state.cart.items);
 
-    // TODO -- dispatch Redux action instead
-    const addToCart = (event: Event) => () => {
-        if (cartItems.find((x: {event: Event, quantity: number}) => x.event.title === event.title)) {
-
-            let updatedItems = [...cartItems];
-            let eventToUpdate = updatedItems.find((x) => x.event.title === event.title);
-            if (eventToUpdate) {
-                eventToUpdate.quantity++;
-            }
-            setCartItems(updatedItems);
-        } else {
-            setCartItems([...cartItems, {event, quantity: 1}])
-        }
-    }
-
-    const handleCheckoutClick = () => {
-        navigate('/checkout');
-    }
+    const handleAddClick = (event: Event) => () => dispatch(addToCart(event));
+    const handleCheckoutClick = () => navigate('/checkout');
 
     return <Grid >
         <GridCell colSpan={12}>
@@ -48,7 +35,7 @@ const Tickets = () => {
         </GridCell>
         <GridCell colSpan={8}>
             {
-                events.map((t) => <EventListing title={t.title} date={t.date} price={t.price} onAdd={addToCart(t)} />)
+                events.map((t) => <EventListing key={t.title} title={t.title} date={t.date} price={t.price} onAdd={handleAddClick(t)} />)
             }
         </GridCell>
         <GridCell colSpan={4}>
@@ -57,14 +44,7 @@ const Tickets = () => {
                     <CardTitle>Cart:</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    {cartItems.map((item) => <div className="flex-h-between">
-                        <Typography>
-                            {item.event.title}: {currencyFormatter(item.event.price)} x {item.quantity}
-                        </Typography>
-                        <Typography>
-                            {currencyFormatter(item.event.price * item.quantity)}
-                        </Typography>
-                    </div>)}
+                    <CartContents items={cartItems || []} />
                     <div className="flex-h-end">
                         <Button theme="primary" themeType="contained" onClick={handleCheckoutClick}>Checkout</Button>
                     </div>

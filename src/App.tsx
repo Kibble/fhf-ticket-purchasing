@@ -2,6 +2,9 @@ import './App.css';
 import { Configuration } from "@react-md/layout";
 //@ts-ignore
 import { useRoutes, A } from "hookrouter";
+import { Provider } from 'react-redux';
+
+import store from './redux/store';
 
 import routes from './router';
 
@@ -10,9 +13,11 @@ function App() {
 
   return (
     <Configuration>
-      <div className="App content">
-        {routeResult}
-      </div>
+      <Provider store={store}>
+        <div className="App content">
+          {routeResult}
+        </div>
+      </Provider>
     </Configuration>
   );
 }

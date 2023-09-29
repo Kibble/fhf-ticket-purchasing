@@ -1,22 +1,17 @@
 import React from 'react';
 import { Grid, GridCell } from "@react-md/utils";
 import { Typography } from "@react-md/typography";
+import { useSelector } from 'react-redux';
 
 import Delivery from '../components/Delivery';
 import Payment from '../components/Payment';
 import Total from '../components/Total';
 
-import type { Delivery as DeliveryType, Item } from '../components/types';
+import type { Delivery as DeliveryType } from '../components/types';
+import type { CartStore } from '../redux/cartSlice';
 
 const Checkout = () => {
-    const items: Array<Item> = [
-        {
-            name: 'Resale Tickets',
-            price: 229,
-            quantity: 2,
-        }
-    ];
-
+    const cartItems = useSelector((state: {cart: CartStore}) => state.cart.items);
     const delivery: DeliveryType = {
         name: 'Mobile Entry',
         price: 0,
@@ -31,7 +26,7 @@ const Checkout = () => {
             <Payment />
         </GridCell>
         <GridCell colSpan={4}>
-            <Total items={items} delivery={delivery} />
+            <Total items={cartItems} delivery={delivery} />
         </GridCell>
     </Grid>
 }
