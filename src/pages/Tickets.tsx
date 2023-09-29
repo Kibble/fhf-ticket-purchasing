@@ -10,6 +10,8 @@ import {
     CardHeader,
 } from "@react-md/card";
 import { Typography } from "@react-md/typography";
+// @ts-ignore
+import { navigate } from 'hookrouter';
 
 import { events } from '../data/events';
 import EventListing from '../components/EventListing';
@@ -36,6 +38,10 @@ const Tickets = () => {
         }
     }
 
+    const handleCheckoutClick = () => {
+        navigate('/checkout');
+    }
+
     return <Grid >
         <GridCell colSpan={12}>
             <Typography type="headline-3">Events and Tickets</Typography>
@@ -60,7 +66,7 @@ const Tickets = () => {
                         </Typography>
                     </div>)}
                     <div className="flex-h-end">
-                        <Button theme="primary" themeType="contained">Checkout</Button>
+                        <Button theme="primary" themeType="contained" onClick={handleCheckoutClick}>Checkout</Button>
                     </div>
                 </CardContent>
             </Card>

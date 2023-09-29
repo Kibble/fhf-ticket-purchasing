@@ -1,13 +1,17 @@
 import './App.css';
 import { Configuration } from "@react-md/layout";
-import Checkout from './pages/Checkout';
-import Tickets from './pages/Tickets';
+//@ts-ignore
+import { useRoutes, A } from "hookrouter";
+
+import routes from './router';
 
 function App() {
+  const routeResult = useRoutes(routes);
+
   return (
     <Configuration>
       <div className="App content">
-        <Tickets />
+        {routeResult}
       </div>
     </Configuration>
   );
