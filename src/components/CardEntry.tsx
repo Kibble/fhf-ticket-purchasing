@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField } from "@react-md/form";
+import { TextField } from '@react-md/form';
 import { Grid, GridCell } from "@react-md/utils";
 import { Typography } from '@react-md/typography';
 
@@ -11,10 +11,22 @@ const CardEntry = () => {
     const [name, setName] = useState<string>('');
     const [cardNumber, setCardNumber] = useState<string>('');
     const [cvv, setCvv] = useState<string>('');
+    const [errors, setErrors] = useState<any>({
+        name: false,
+        number: false,
+        expiration: false,
+        cvv: false,
+    });
 
     const handleCardNumberChange = (e: any) => setCardNumber(cardNumberFormatter(e.target.value));
     const handleCvvChange = (e: any) => setCvv(e.target.value.replace(/\D/g, ''));
     const handleNameChange = (e: any) => setName(e.target.value.trim());
+
+    // Check that CVV is exactly 3 digits
+    const handleCvvBlur = (e: any) => setErrors({
+        ...errors,
+        cvv: !/^\d{3}$/.test(e.target.value)
+    });
 
     return <div>
         <Grid>
@@ -34,7 +46,7 @@ const CardEntry = () => {
                 <TextField id="card-expiration-date" label="Expiration Date" placeholder="MM/YY" />
             </GridCell>
             <GridCell colSpan={6}>
-                <TextField id="card-cvv" label="CVV Code" value={cvv} pattern="\d{3}" maxLength={3} onChange={handleCvvChange} />
+                <TextField id="card-cvv" label="CVV Code" value={cvv} pattern="\d{3}" maxLength={3} onBlur={handleCvvBlur} onChange={handleCvvChange} error={errors.cvv} />
             </GridCell>
         </Grid>
     </div>
