@@ -59,10 +59,19 @@ p {
   width: 100%;
 }
 
+.margin-top-1em {
+  margin-top: 1em;
+}
+
 .margin-top-2em {
   margin-top: 2em;
 }
 
 .rmd-card {
   margin-bottom: 1em;
+}
+
+.small {
+  zoom: 0.7;
+  -moz-transform: scale(0.7);
 }

@@ -28,10 +28,34 @@ export const cartSlice = createSlice({
                 state.items = [...state.items, {event, quantity: 1}];
             }
         },
+        incrementCartItem: (state, action) => {
+            let event = action.payload;
+            // TODO -- Error handling for when the cart item is not found
+            let updatedItems = [...state.items];
+            let eventToUpdate = updatedItems.find((x) => x.event.title === event.title);
+            if (eventToUpdate) {
+                eventToUpdate.quantity++;
+            }
+            state.items = updatedItems;
+        },
+        decrementCartItem: (state, action) => {
+            let event = action.payload;
+            // TODO -- Error handling for when the cart item is not found
+            let updatedItems = [...state.items];
+            let eventToUpdate = updatedItems.find((x) => x.event.title === event.title);
+            if (eventToUpdate && eventToUpdate.quantity > 0) {
+                eventToUpdate.quantity--;
+            }
+            state.items = updatedItems;
+        },
+        updateCart: (state) => {
+            let updatedItems = state.items.filter((x) => x.quantity > 0);
+            state.items = updatedItems;
+        }
     },
   })
   
   // Action creators are generated for each case reducer function
-  export const { addToCart } = cartSlice.actions;
+  export const { addToCart, decrementCartItem, incrementCartItem, updateCart } = cartSlice.actions;
   
   export default cartSlice.reducer;

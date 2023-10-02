@@ -42,7 +42,7 @@ const Tickets = () => {
                     <CardTitle>Cart:</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <CartContents items={cartItems || []} />
+                    <CartContents isEditing={false} items={cartItems || []} />
                     <div className="flex-h-end">
                         <Button theme="primary" themeType="contained" onClick={handleCheckoutClick}>Checkout</Button>
                     </div>

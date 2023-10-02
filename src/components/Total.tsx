@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Button } from '@react-md/button';
 import {
     Card,
@@ -7,9 +7,11 @@ import {
     CardHeader,
 } from '@react-md/card';
 import { Typography } from '@react-md/typography';
+import { useDispatch, useSelector } from 'react-redux';
 
 import CartContents from '../components/CartContents';
 import { currencyFormatter } from '../utils/formatters';
+import { updateCart } from '../redux/cartSlice';
 
 import type { Delivery, Event } from './types';
 
@@ -20,7 +22,19 @@ type Props = {
 }
 
 const Total = (props: Props) => {
+    const dispatch = useDispatch();
     const {delivery, items, onPlaceOrderClick} = props;
+
+    const [isEditing, setIsEditing] = useState<boolean>(false);
+
+    const handleEditClick = () => {
+        setIsEditing(true);
+    }
+
+    const handleSaveCartClick = () => {
+        dispatch(updateCart());
+        setIsEditing(false);
+    }
 
     const total = useMemo(() => {
         let sum = items.reduce((a, b) => a + (b.event.price * b.quantity), 0);
@@ -41,7 +55,7 @@ const Total = (props: Props) => {
                 <Typography type="headline-6">
                     Tickets
                 </Typography>
-                <CartContents items={items} />
+                <CartContents items={items} isEditing={isEditing} />
                 <Typography type="headline-6">
                     Delivery
                 </Typography>
@@ -51,7 +65,16 @@ const Total = (props: Props) => {
                         <span>{delivery.price === 0 ? 'Free' : `$${delivery.price}`}</span>
                     </div>
                 </Typography>
-                <Button className="full-width margin-top-2em" theme="primary" themeType="contained" onClick={onPlaceOrderClick}>Place Order</Button>
+                {isEditing
+                    ? <>
+                        <Button className="full-width margin-top-2em" theme="primary" themeType="contained" onClick={handleSaveCartClick}>Update Cart</Button>
+                    </>
+                    : <>
+                        <Button className="full-width margin-top-2em" theme="primary" themeType="outline" onClick={handleEditClick}>Edit Cart</Button>
+                        <Button className="full-width margin-top-1em" theme="primary" themeType="contained" onClick={onPlaceOrderClick}>Place Order</Button>
+                    </>
+                }
+                
             </CardContent>
         </Card>
     </>
