@@ -37,7 +37,6 @@ Due to limited time, some features were considered but not implemented. The foll
 * Other methods of payment
 
 ### Shopping Cart
-* Removing items from the cart
 * Adding more than one item at a time
 * "Your cart is empty" text
 * Prevent user from checkout out with empty cart
