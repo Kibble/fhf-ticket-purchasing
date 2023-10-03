@@ -41,6 +41,8 @@ const Total = (props: Props) => {
         return currencyFormatter(sum);
     }, [items]);
 
+    const isCartEmpty = useMemo(() => !(items && items.length > 0), [items]);
+
     return <>
         <Card fullWidth>
             <CardHeader>
@@ -65,11 +67,17 @@ const Total = (props: Props) => {
                 </div>
                 {isEditing
                     ? <>
-                        <Button className="full-width margin-top-2em" theme="primary" themeType="contained" onClick={handleSaveCartClick}>Update Cart</Button>
+                        <Button className="full-width margin-top-2em" theme="primary" themeType="contained" onClick={handleSaveCartClick}>
+                            Update Cart
+                        </Button>
                     </>
                     : <>
-                        <Button className="full-width margin-top-2em" theme="primary" themeType="outline" onClick={handleEditClick}>Edit Cart</Button>
-                        <Button className="full-width margin-top-1em" theme="primary" themeType="contained" onClick={onPlaceOrderClick}>Place Order</Button>
+                        <Button className="full-width margin-top-2em" theme="primary" themeType="outline" onClick={handleEditClick}>
+                            Edit Cart
+                        </Button>
+                        <Button className="full-width margin-top-1em" theme="primary" themeType="contained" onClick={onPlaceOrderClick} disabled={isCartEmpty}>
+                            Place Order
+                        </Button>
                     </>
                 }
             </CardContent>

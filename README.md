@@ -39,7 +39,6 @@ Due to limited time, some features were considered but not implemented. The foll
 ### Shopping Cart
 * Adding more than one item at a time
 * "Your cart is empty" text
-* Prevent user from checkout out with empty cart
 
 ### Other
 * WCAG compliance / accessibility
