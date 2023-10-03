@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Button } from "@react-md/button";
 import { Grid, GridCell } from '@react-md/utils';
 import {
@@ -23,6 +23,7 @@ import type { CartStore } from '../redux/cartSlice';
 const Tickets = () => {
     const dispatch = useDispatch();
     const cartItems = useSelector((state: {cart: CartStore}) => state.cart.items);
+    const isCheckoutDisabled = useMemo(() => !(cartItems && cartItems.length > 0), [cartItems]);
 
     const handleAddClick = (event: Event) => () => dispatch(addToCart(event));
     const handleCheckoutClick = () => navigate('/checkout');
@@ -44,7 +45,9 @@ const Tickets = () => {
                 <CardContent>
                     <CartContents isEditing={false} items={cartItems || []} />
                     <div className="flex-h-end">
-                        <Button theme="primary" themeType="contained" onClick={handleCheckoutClick}>Checkout</Button>
+                        <Button theme="primary" themeType="contained" onClick={handleCheckoutClick} disabled={isCheckoutDisabled}>
+                            Checkout
+                        </Button>
                     </div>
                 </CardContent>
             </Card>
