@@ -7,7 +7,7 @@ import {
     CardHeader,
 } from '@react-md/card';
 import { Typography } from '@react-md/typography';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import CartContents from '../components/CartContents';
 import { currencyFormatter } from '../utils/formatters';
@@ -59,12 +59,10 @@ const Total = (props: Props) => {
                 <Typography type="headline-6">
                     Delivery
                 </Typography>
-                <Typography>
-                    <div className="flex-h-between">
-                        <span>{delivery.name}</span>
-                        <span>{delivery.price === 0 ? 'Free' : `$${delivery.price}`}</span>
-                    </div>
-                </Typography>
+                <div className="flex-h-between">
+                    <Typography>{delivery.name}</Typography>
+                    <Typography>{delivery.price === 0 ? 'Free' : `$${delivery.price}`}</Typography>
+                </div>
                 {isEditing
                     ? <>
                         <Button className="full-width margin-top-2em" theme="primary" themeType="contained" onClick={handleSaveCartClick}>Update Cart</Button>
@@ -74,7 +72,6 @@ const Total = (props: Props) => {
                         <Button className="full-width margin-top-1em" theme="primary" themeType="contained" onClick={onPlaceOrderClick}>Place Order</Button>
                     </>
                 }
-                
             </CardContent>
         </Card>
     </>

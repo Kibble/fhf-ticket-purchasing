@@ -50,4 +50,3 @@ Due to limited time, some features were considered but not implemented. The foll
 * Order cancelling
 * On-screen navigation back to the event listing page
 * Terms of Use
-* Dynamic "available by" date

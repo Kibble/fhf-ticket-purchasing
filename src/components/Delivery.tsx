@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import {
     Card,
@@ -10,6 +10,12 @@ import {
   import { Typography } from "@react-md/typography";
 
 const Delivery = () => {
+    const tomorrow = useMemo(() => {
+        let d = new Date();
+        d = new Date(d.setDate(d.getDate() + 1));
+        return d.toDateString();
+    }, []);
+
     return <>
         <Card fullWidth>
             <CardHeader>
@@ -18,7 +24,7 @@ const Delivery = () => {
             </CardHeader>
             <CardContent>
                 <Typography>
-                    Tickets Available by Sun Apr 3, 2022
+                    Tickets Available by {tomorrow}
                 </Typography>
                 <Typography>
                     These mobile tickets will be transferred directly to you from a trusted seller.
